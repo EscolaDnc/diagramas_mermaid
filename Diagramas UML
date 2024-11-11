@@ -1,3 +1,5 @@
+===================================================================================
+Exemplo 01: 
 graph TD
     Cliente((Cliente))
     Admin((Administrador))
@@ -5,7 +7,8 @@ graph TD
     Cliente --> |Realizar compra| B[Carrinho]
     Admin --> |Gerenciar estoque| C[Inventário]
     Admin --> |Processar pedidos| D[Pedidos]
-
+===================================================================================
+Exemplo 02: 
 classDiagram
     class Produto {
         -id: int
@@ -25,7 +28,8 @@ classDiagram
     }
     Carrinho "1" --> "*" Produto: contém
     Cliente "1" --> "1" Carrinho: possui
-
+===================================================================================
+Exemplo 03: 
 sequenceDiagram
     participant Cliente
     participant Carrinho
@@ -35,7 +39,8 @@ sequenceDiagram
     Cliente->>Sistema de Pagamento: Realiza pagamento
     Sistema de Pagamento-->>Carrinho: Confirma pagamento
     Carrinho-->>Cliente: Confirma pedido
-
+===================================================================================
+Exemplo 04: 
 graph TD
     A[Receber pedido] --> B{Estoque disponível?}
     B -->|Sim| C[Separar itens]
