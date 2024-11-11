@@ -1,3 +1,5 @@
+===================================================================================
+Exemplo 01: 
 classDiagram
     class Produto {
         -id: int
@@ -6,12 +8,14 @@ classDiagram
         +exibirDetalhes()
         +atualizarPreco(novoPreco: float)
     }
-
+===================================================================================
+Exemplo 02: 
 classDiagram
     Carrinho "1" --> "*" ItemCarrinho : contém
     Pedido "1" *-- "*" ItemPedido : composto por
     Cliente "1" -- "*" Pedido : faz
-
+===================================================================================
+Exemplo 03: 
 classDiagram
     Produto <|-- ProdutoFisico
     Produto <|-- ProdutoDigital
@@ -25,11 +29,13 @@ classDiagram
     class ProdutoDigital {
         +tamanhoArquivo: int
     }
-
+===================================================================================
+Exemplo 04: 
 classDiagram
     Cliente "1" -- "*" Pedido : faz
     Pedido "1" -- "1..*" ItemPedido : contem
-
+===================================================================================
+Exemplo 05: 
 classDiagram
     class Cliente {
         -id: int
