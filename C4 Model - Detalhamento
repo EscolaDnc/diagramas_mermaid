@@ -1,0 +1,65 @@
+===================================================================================
+Exemplo 01: 
+C4Component
+title Serviço de Produtos - Diagrama de Componentes
+
+Container(web_app, "Aplicação Web", "React", "Interface do usuário")
+Container_Boundary(products, "Serviço de Produtos") {
+    Component(product_api, "API de Produtos", "Express.js", "Gerencia requisições de produtos")
+    Component(product_manager, "Gerenciador de Produtos", "Node.js", "Lógica de negócios para produtos")
+    Component(product_db, "Banco de Dados de Produtos", "MongoDB", "Armazena informações de produtos")
+}
+
+Rel(web_app, product_api, "Faz requisições para", "JSON/HTTPS")
+Rel(product_api, product_manager, "Usa")
+Rel(product_manager, product_db, "Lê/Escreve")
+
+UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+===================================================================================
+Exemplo 02: 
+C4Component
+title Serviço de Carrinho - Diagrama de Componentes
+
+Container(web_app, "Aplicação Web", "React", "Interface do usuário")
+Container_Boundary(cart, "Serviço de Carrinho") {
+    Component(cart_api, "API de Carrinho", "Flask", "Gerencia requisições do carrinho")
+    Component(cart_manager, "Gerenciador de Carrinho", "Python", "Lógica de negócios para o carrinho")
+    Component(cart_db, "Banco de Dados do Carrinho", "Redis", "Armazena carrinhos ativos")
+    Component(event_publisher, "Publicador de Eventos", "Python", "Publica eventos no Kafka")
+}
+ContainerQueue(kafka, "Kafka", "Apache Kafka", "Broker de mensagens")
+
+Rel(web_app, cart_api, "Faz requisições para", "JSON/HTTPS")
+Rel(cart_api, cart_manager, "Usa")
+Rel(cart_manager, cart_db, "Lê/Escreve")
+Rel(cart_manager, event_publisher, "Usa")
+Rel(event_publisher, kafka, "Publica eventos em")
+
+UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+===================================================================================
+Exemplo 03: 
+C4Component
+title Serviço de Checkout - Diagrama de Componentes
+
+Container(web_app, "Aplicação Web", "React", "Interface do usuário")
+Container_Boundary(checkout, "Serviço de Checkout") {
+    Component(checkout_api, "API de Checkout", "Spring Boot", "Gerencia requisições de checkout")
+    Component(order_processor, "Processador de Pedidos", "Java", "Processa pedidos")
+    Component(payment_gateway, "Gateway de Pagamento", "Java", "Integra com serviço de pagamento")
+    Component(event_sender, "Enviador de Eventos", "Java", "Envia eventos pro Kafka")
+    Component(queue_sender, "Enviador de Fila", "Java", "Envia mensagens para SQS")
+}
+ContainerQueue(kafka, "Kafka", "Apache Kafka", "Broker de mensagens")
+ContainerQueue(sqs, "SQS", "Amazon SQS", "Fila para processamento assíncrono")
+System_Ext(payment, "Serviço de Pagamento", "Processa pagamentos")
+
+Rel(web_app, checkout_api, "Faz requisições para", "JSON/HTTPS")
+Rel(checkout_api, queue_sender, "Usa")
+Rel(order_processor, payment_gateway, "Usa")
+Rel(payment_gateway, payment, "Integra com")
+Rel(event_sender, kafka, "Consome eventos de")
+Rel(sqs, order_processor, "Usa")
+Rel(queue_sender, sqs, "Envia mensagens para")
+Rel(order_processor, event_sender, "Usa")
+
+UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
