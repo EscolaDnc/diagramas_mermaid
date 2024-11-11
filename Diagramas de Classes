@@ -1,0 +1,58 @@
+classDiagram
+    class Produto {
+        -id: int
+        -nome: string
+        -preco: float
+        +exibirDetalhes()
+        +atualizarPreco(novoPreco: float)
+    }
+
+classDiagram
+    Carrinho "1" --> "*" ItemCarrinho : contém
+    Pedido "1" *-- "*" ItemPedido : composto por
+    Cliente "1" -- "*" Pedido : faz
+
+classDiagram
+    Produto <|-- ProdutoFisico
+    Produto <|-- ProdutoDigital
+    class Produto {
+        +nome: string
+        +preco: float
+    }
+    class ProdutoFisico {
+        +peso: float
+    }
+    class ProdutoDigital {
+        +tamanhoArquivo: int
+    }
+
+classDiagram
+    Cliente "1" -- "*" Pedido : faz
+    Pedido "1" -- "1..*" ItemPedido : contem
+
+classDiagram
+    class Cliente {
+        -id: int
+        -nome: string
+        -email: string
+        +fazerPedido()
+    }
+    class Pedido {
+        -id: int
+        -data: Date
+        -status: string
+        +calcularTotal()
+    }
+    class ItemPedido {
+        -quantidade: int
+        -precoUnitario: float
+    }
+    class Produto {
+        -id: int
+        -nome: string
+        -preco: float
+        +atualizarEstoque()
+    }
+    Cliente "1" -- "*" Pedido : faz
+    Pedido "1" *-- "*" ItemPedido : contém
+    ItemPedido "*" -- "1" Produto : referencia
