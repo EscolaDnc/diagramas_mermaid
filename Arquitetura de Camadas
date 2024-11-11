@@ -1,9 +1,13 @@
+===================================================================================
+Exemplo 01: 
 graph TD
     A[Camada de Apresentação] -->|Solicita dados| B[Camada de Lógica de Negócios]
     B -->|Processa pedido| C[Camada de Acesso a Dados]
     C -->|Retorna dados| B
     B -->|Envia resultado| A
 
+===================================================================================
+Exemplo 02: 
 graph TD
     subgraph "Camada de Apresentação"
     A[Página de Produto]
