@@ -1,0 +1,54 @@
+graph TD
+    A((Início)) --> B[Navegar catálogo]
+    B --> C{Produto disponível?}
+    C -->|Sim| D[Adicionar ao carrinho]
+    C -->|Não| E[Notificar indisponibilidade]
+    D --> F((Fim))
+    E --> F
+
+graph TD
+    A[Iniciar pedido] --> B{{"Processar pedido"}}
+    B --> C[Verificar estoque]
+    B --> D[Validar pagamento]
+    C --> E{{"Juntar resultados"}}
+    D --> E
+    E --> F[Finalizar pedido]
+
+graph TD
+    A[Receber pedido] --> B{{"Iniciar processamento"}}
+    B --> C[Preparar produto]
+    B --> D[Gerar nota fiscal]
+    C --> E{{"Sincronizar"}}
+    D --> E
+    E --> F[Enviar pedido]
+
+graph TD
+    subgraph Cliente
+    A[Fazer pedido]
+    end
+    subgraph Sistema
+    B[Processar pedido]
+    C[Verificar pagamento]
+    end
+    subgraph Estoque
+    D[Separar itens]
+    E[Embalar pedido]
+    end
+    A --> B --> C
+    C --> D --> E
+
+graph TD
+    A((Início)) --> B[Cliente navega catálogo]
+    B --> C[Cliente seleciona produto]
+    C --> D{Produto em estoque?}
+    D -->|Sim| E[Adicionar ao carrinho]
+    D -->|Não| F[Notificar indisponibilidade]
+    F --> B
+    E --> B
+    E --> G[Cliente finaliza compra]
+    G --> H{Pagamento aprovado?}
+    H -->|Sim| I[Processar pedido]
+    H -->|Não| J[Solicitar novo pagamento]
+    J --> G
+    I --> K[Enviar confirmação]
+    K --> L((Fim))
