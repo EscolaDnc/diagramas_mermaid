@@ -1,0 +1,45 @@
+graph TD
+    Cliente((Cliente))
+    Admin((Administrador))
+    Cliente --> |Navegar produtos| A[Catálogo]
+    Cliente --> |Realizar compra| B[Carrinho]
+    Admin --> |Gerenciar estoque| C[Inventário]
+    Admin --> |Processar pedidos| D[Pedidos]
+
+classDiagram
+    class Produto {
+        -id: int
+        -nome: string
+        -preco: float
+        +exibirDetalhes()
+    }
+    class Carrinho {
+        -itens: Produto[]
+        +adicionarItem(Produto)
+        +calcularTotal()
+    }
+    class Cliente {
+        -nome: string
+        -email: string
+        +fazerPedido()
+    }
+    Carrinho "1" --> "*" Produto: contém
+    Cliente "1" --> "1" Carrinho: possui
+
+sequenceDiagram
+    participant Cliente
+    participant Carrinho
+    participant Sistema de Pagamento
+    Cliente->>Carrinho: Adiciona produto
+    Carrinho->>Carrinho: Calcula total
+    Cliente->>Sistema de Pagamento: Realiza pagamento
+    Sistema de Pagamento-->>Carrinho: Confirma pagamento
+    Carrinho-->>Cliente: Confirma pedido
+
+graph TD
+    A[Receber pedido] --> B{Estoque disponível?}
+    B -->|Sim| C[Separar itens]
+    B -->|Não| D[Notificar indisponibilidade]
+    C --> E[Empacotar pedido]
+    E --> F[Enviar para entrega]
+    F --> G[Atualizar status do pedido]
