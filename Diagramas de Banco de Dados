@@ -1,0 +1,69 @@
+erDiagram
+    CLIENTE ||--o{ PEDIDO : faz
+    PEDIDO ||--|{ ITEM_PEDIDO : contem
+    PRODUTO ||--o{ ITEM_PEDIDO : inclui
+
+erDiagram
+    CLIENTE {
+        int id
+        string nome
+        string email
+    }
+    PRODUTO {
+        int id
+        string nome
+        float preco
+    }
+    CLIENTE ||--o{ PEDIDO : faz
+    PEDIDO ||--|{ ITEM_PEDIDO : contem
+    PRODUTO ||--o{ ITEM_PEDIDO : inclui
+
+erDiagram
+    CLIENTE {
+        int id
+        string nome
+        string email
+    }
+    PRODUTO {
+        int id
+        string nome
+        float preco
+    }
+    CLIENTE ||--o{ PEDIDO : faz
+    PEDIDO ||--|{ ITEM_PEDIDO : contem
+    PRODUTO ||--o{ ITEM_PEDIDO : inclui
+
+erDiagram
+    CLIENTE ||--o{ PEDIDO : "1 faz muitos"
+    PEDIDO ||--|{ ITEM_PEDIDO : "1 contém muitos"
+    PRODUTO ||--o{ ITEM_PEDIDO : "1 está em muitos"
+
+erDiagram
+    CLIENTE ||--o{ PEDIDO : faz
+    CLIENTE {
+        int id
+        string nome
+        string email
+        string endereco
+    }
+    PEDIDO ||--|{ ITEM_PEDIDO : contem
+    PEDIDO {
+        int id
+        date data
+        float total
+        string status
+    }
+    PRODUTO ||--o{ ITEM_PEDIDO : inclui
+    PRODUTO {
+        int id
+        string nome
+        float preco
+        int estoque
+    }
+    ITEM_PEDIDO {
+        int pedido_id
+        int produto_id
+        int quantidade
+        float preco_unitario
+    }
+
