@@ -1,0 +1,56 @@
+
+C4Context
+title Sistema de E-commerce - Diagrama de Contexto
+
+Person(customer, "Cliente", "Usuário da loja online")
+System(ecommerce, "Sistema de E-commerce", "Plataforma de compras online")
+System_Ext(payment, "Gateway de Pagamento", "Processa pagamentos")
+System_Ext(shipping, "Serviço de Entrega", "Gerencia entregas")
+
+Rel(customer, ecommerce, "Usa")
+Rel(ecommerce, payment, "Processa pagamentos via")
+Rel(ecommerce, shipping, "Agenda entregas via")
+UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+
+
+C4Context
+title Sistema de E-commerce - Diagrama de Contexto
+
+Person(customer, "Cliente", "Usuário da loja online")
+System(ecommerce, "Sistema de E-commerce", "Plataforma de compras online")
+System_Ext(payment, "Gateway de Pagamento", "Processa pagamentos")
+System_Ext(shipping, "Serviço de Entrega", "Gerencia entregas")
+
+Rel(customer, ecommerce, "Usa")
+Rel(ecommerce, payment, "Processa pagamentos via")
+Rel(ecommerce, shipping, "Agenda entregas via")
+
+UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+
+
+
+C4Container
+title Sistema de E-commerce - Diagrama de Contêineres
+
+Person(customer, "Cliente", "Usuário da loja online")
+System_Boundary(ecommerce, "Sistema de E-commerce") {
+    Container(web_app, "Aplicação Web", "React", "Interface do usuário")
+    Container(products, "Serviço de Produtos", "Node.js", "Gerencia catálogo de produtos")
+    Container(cart, "Serviço de Carrinho", "Python", "Gerencia carrinho de compras")
+    Container(checkout, "Serviço de Checkout", "Java", "Processa pedidos")
+    ContainerQueue(kafka, "Kafka", "Apache Kafka", "Broker de mensagens para comunicação entre serviços")
+    ContainerQueue(sqs, "SQS", "Amazon SQS", "Fila para processamento assíncrono")
+}
+System_Ext(payment, "Gateway de Pagamento", "Processa pagamentos")
+
+Rel(customer, web_app, "Usa", "HTTPS")
+Rel(web_app, products, "Usa", "API")
+Rel(web_app, cart, "Usa", "API")
+Rel(web_app, checkout, "Usa", "API")
+Rel(cart, kafka, "Publica eventos")
+Rel(checkout, kafka, "Consome eventos")
+Rel(checkout, sqs, "Envia mensagens")
+Rel(checkout, payment, "Processa pagamentos", "API")
+
+UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+
