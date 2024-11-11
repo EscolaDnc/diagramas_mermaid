@@ -1,0 +1,40 @@
+sequenceDiagram
+    actor Cliente
+    participant Carrinho
+    participant Produto
+
+    Cliente->>Carrinho: Adicionar produto
+    Carrinho->>Produto: Verificar disponibilidade
+    Produto-->>Carrinho: Produto disponível
+    Carrinho-->>Cliente: Produto adicionado
+
+sequenceDiagram
+    Cliente->>Loja: Fazer pedido (síncrona)
+    Loja-->>Cliente: Confirmar pedido (retorno)
+    Loja->>Entrega: Notificar envio (assíncrona)
+
+sequenceDiagram
+    loop Para cada item no carrinho
+        Carrinho->>Estoque: Verificar disponibilidade
+        Estoque-->>Carrinho: Confirmar disponibilidade
+    end
+
+sequenceDiagram
+    actor Cliente
+    participant Carrinho
+    participant Sistema de Pagamento
+    participant Estoque
+
+    Cliente->>Carrinho: Adicionar produtos
+    Carrinho->>Estoque: Verificar disponibilidade
+    Estoque-->>Carrinho: Confirmar disponibilidade
+    Cliente->>Carrinho: Finalizar compra
+    Carrinho->>Sistema de Pagamento: Processar pagamento
+    alt Pagamento aprovado
+        Sistema de Pagamento-->>Carrinho: Confirmar pagamento
+        Carrinho->>Estoque: Atualizar estoque
+        Carrinho-->>Cliente: Confirmar pedido
+    else Pagamento recusado
+        Sistema de Pagamento-->>Carrinho: Notificar falha
+        Carrinho-->>Cliente: Informar erro no pagamento
+    end
