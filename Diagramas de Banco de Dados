@@ -1,23 +1,11 @@
+===================================================================================
+Exemplo 01: 
 erDiagram
     CLIENTE ||--o{ PEDIDO : faz
     PEDIDO ||--|{ ITEM_PEDIDO : contem
     PRODUTO ||--o{ ITEM_PEDIDO : inclui
-
-erDiagram
-    CLIENTE {
-        int id
-        string nome
-        string email
-    }
-    PRODUTO {
-        int id
-        string nome
-        float preco
-    }
-    CLIENTE ||--o{ PEDIDO : faz
-    PEDIDO ||--|{ ITEM_PEDIDO : contem
-    PRODUTO ||--o{ ITEM_PEDIDO : inclui
-
+===================================================================================
+Exemplo 02: 
 erDiagram
     CLIENTE {
         int id
@@ -32,12 +20,30 @@ erDiagram
     CLIENTE ||--o{ PEDIDO : faz
     PEDIDO ||--|{ ITEM_PEDIDO : contem
     PRODUTO ||--o{ ITEM_PEDIDO : inclui
-
+===================================================================================
+Exemplo 03: 
+erDiagram
+    CLIENTE {
+        int id
+        string nome
+        string email
+    }
+    PRODUTO {
+        int id
+        string nome
+        float preco
+    }
+    CLIENTE ||--o{ PEDIDO : faz
+    PEDIDO ||--|{ ITEM_PEDIDO : contem
+    PRODUTO ||--o{ ITEM_PEDIDO : inclui
+===================================================================================
+Exemplo 04: 
 erDiagram
     CLIENTE ||--o{ PEDIDO : "1 faz muitos"
     PEDIDO ||--|{ ITEM_PEDIDO : "1 contém muitos"
     PRODUTO ||--o{ ITEM_PEDIDO : "1 está em muitos"
-
+===================================================================================
+Exemplo 05: 
 erDiagram
     CLIENTE ||--o{ PEDIDO : faz
     CLIENTE {
