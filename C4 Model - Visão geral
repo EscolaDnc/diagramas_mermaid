@@ -1,3 +1,5 @@
+===================================================================================
+Exemplo 01: 
 C4Context
 title Sistema de E-commerce - Diagrama de Contexto
 
@@ -9,7 +11,8 @@ System_Ext(shipping, "Sistema de Entrega", "Gerencia entregas de produtos")
 Rel(customer, ecommerce, "Usa")
 Rel(ecommerce, payment, "Usa")
 Rel(ecommerce, shipping, "Usa")
-
+===================================================================================
+Exemplo 02: 
 C4Container
 title Sistema de E-commerce - Diagrama de Contêineres
 
@@ -25,6 +28,8 @@ Rel(customer, webapp, "Usa", "HTTPS")
 Rel(webapp, api, "Faz chamadas para", "JSON/HTTPS")
 Rel(api, db, "Lê e escreve")
 Rel(api, payment, "Usa", "API")
+===================================================================================
+Exemplo 03: 
 
 C4Component
 title API do E-commerce - Diagrama de Componentes
