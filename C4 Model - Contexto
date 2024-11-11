@@ -1,4 +1,5 @@
-
+===================================================================================
+Exemplo 01: 
 C4Context
 title Sistema de E-commerce - Diagrama de Contexto
 
@@ -11,8 +12,8 @@ Rel(customer, ecommerce, "Usa")
 Rel(ecommerce, payment, "Processa pagamentos via")
 Rel(ecommerce, shipping, "Agenda entregas via")
 UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
-
-
+===================================================================================
+Exemplo 02: 
 C4Context
 title Sistema de E-commerce - Diagrama de Contexto
 
@@ -26,9 +27,8 @@ Rel(ecommerce, payment, "Processa pagamentos via")
 Rel(ecommerce, shipping, "Agenda entregas via")
 
 UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
-
-
-
+===================================================================================
+Exemplo 03:
 C4Container
 title Sistema de E-commerce - Diagrama de Contêineres
 
