@@ -1,0 +1,28 @@
+graph TD
+    A[Camada de Apresentação] -->|Solicita dados| B[Camada de Lógica de Negócios]
+    B -->|Processa pedido| C[Camada de Acesso a Dados]
+    C -->|Retorna dados| B
+    B -->|Envia resultado| A
+
+graph TD
+    subgraph "Camada de Apresentação"
+    A[Página de Produto]
+    B[Carrinho de Compras]
+    end
+
+    subgraph "Camada de Lógica de Negócios"
+    C[Serviço de Pedidos]
+    D[Serviço de Pagamento]
+    end
+
+    subgraph "Camada de Acesso a Dados"
+    E[Repositório de Produtos]
+    F[Repositório de Pedidos]
+    end
+
+    A --> C
+    B --> C
+    C --> D
+    C --> E
+    C --> F
+    D --> F
