@@ -1,19 +1,26 @@
+===================================================================================
+Exemplo 01: 
 graph TD
     A[Cliente entra no site] --> B{Produto disponível?}
     B -->|Sim| C[Adiciona ao carrinho]
     B -->|Não| D[Notifica indisponibilidade]
     C --> E[Finaliza compra]
-
+===================================================================================
+Exemplo 02: 
 sequenceDiagram
     Cliente->>Loja: Seleciona produto
     Loja->>Pagamento: Processa pagamento
     Pagamento-->>Loja: Confirma pagamento
     Loja-->>Cliente: Confirma pedido
+===================================================================================
+Exemplo 03: 
 erDiagram
     CLIENTE ||--o{ PEDIDO : faz
     PEDIDO ||--|{ ITEM_PEDIDO : contem
     PRODUTO ||--o{ ITEM_PEDIDO : inclui
 
+===================================================================================
+Exemplo 04: 
 graph TD
     A[Cliente solicita devolução] --> B{Produto elegível?}
     B -->|Sim| C[Gerar código de postagem]
