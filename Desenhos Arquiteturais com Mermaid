@@ -1,0 +1,25 @@
+graph TD
+    A[Cliente entra no site] --> B{Produto disponível?}
+    B -->|Sim| C[Adiciona ao carrinho]
+    B -->|Não| D[Notifica indisponibilidade]
+    C --> E[Finaliza compra]
+
+sequenceDiagram
+    Cliente->>Loja: Seleciona produto
+    Loja->>Pagamento: Processa pagamento
+    Pagamento-->>Loja: Confirma pagamento
+    Loja-->>Cliente: Confirma pedido
+erDiagram
+    CLIENTE ||--o{ PEDIDO : faz
+    PEDIDO ||--|{ ITEM_PEDIDO : contem
+    PRODUTO ||--o{ ITEM_PEDIDO : inclui
+
+graph TD
+    A[Cliente solicita devolução] --> B{Produto elegível?}
+    B -->|Sim| C[Gerar código de postagem]
+    B -->|Não| D[Notificar inelegibilidade]
+    C --> E[Cliente envia produto]
+    E --> F[Recebimento e inspeção]
+    F --> G{Produto em boas condições?}
+    G -->|Sim| H[Processar reembolso]
+    G -->|Não| I[Notificar cliente]
