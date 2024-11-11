@@ -1,3 +1,5 @@
+===================================================================================
+Exemplo 01: 
 sequenceDiagram
     actor Cliente
     participant Carrinho
@@ -7,18 +9,21 @@ sequenceDiagram
     Carrinho->>Produto: Verificar disponibilidade
     Produto-->>Carrinho: Produto disponível
     Carrinho-->>Cliente: Produto adicionado
-
+===================================================================================
+Exemplo 02: 
 sequenceDiagram
     Cliente->>Loja: Fazer pedido (síncrona)
     Loja-->>Cliente: Confirmar pedido (retorno)
     Loja->>Entrega: Notificar envio (assíncrona)
-
+===================================================================================
+Exemplo 03: 
 sequenceDiagram
     loop Para cada item no carrinho
         Carrinho->>Estoque: Verificar disponibilidade
         Estoque-->>Carrinho: Confirmar disponibilidade
     end
-
+===================================================================================
+Exemplo 04: 
 sequenceDiagram
     actor Cliente
     participant Carrinho
