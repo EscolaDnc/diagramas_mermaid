@@ -1,0 +1,48 @@
+C4Context
+title Sistema de E-commerce - Diagrama de Contexto
+
+Person(customer, "Cliente", "Um cliente da loja online")
+System(ecommerce, "Sistema de E-commerce", "Permite aos clientes navegar e comprar produtos")
+System_Ext(payment, "Sistema de Pagamento", "Processa pagamentos online")
+System_Ext(shipping, "Sistema de Entrega", "Gerencia entregas de produtos")
+
+Rel(customer, ecommerce, "Usa")
+Rel(ecommerce, payment, "Usa")
+Rel(ecommerce, shipping, "Usa")
+
+C4Container
+title Sistema de E-commerce - Diagrama de Contêineres
+
+Person(customer, "Cliente", "Um cliente da loja online")
+System_Boundary(ecommerce, "Sistema de E-commerce") {
+    Container(webapp, "Aplicação Web", "React", "Interface do usuário")
+    Container(api, "API", "Node.js", "Backend para processar pedidos")
+    ContainerDb(db, "Banco de Dados", "MongoDB", "Armazena dados de produtos e pedidos")
+}
+System_Ext(payment, "Sistema de Pagamento", "Processa pagamentos online")
+
+Rel(customer, webapp, "Usa", "HTTPS")
+Rel(webapp, api, "Faz chamadas para", "JSON/HTTPS")
+Rel(api, db, "Lê e escreve")
+Rel(api, payment, "Usa", "API")
+
+C4Component
+title API do E-commerce - Diagrama de Componentes
+
+Container(webapp, "Aplicação Web", "React", "Interface do usuário")
+ContainerDb(db, "Banco de Dados", "MongoDB", "Armazena dados")
+System_Ext(payment, "Sistema de Pagamento", "Processa pagamentos")
+
+Container_Boundary(api, "API") {
+    Component(products, "Gerenciador de Produtos", "Gerencia catálogo")
+    Component(orders, "Gerenciador de Pedidos", "Processa pedidos")
+    Component(users, "Gerenciador de Usuários", "Gerencia contas")
+}
+
+Rel(webapp, products, "Usa", "JSON/HTTPS")
+Rel(webapp, orders, "Usa", "JSON/HTTPS")
+Rel(webapp, users, "Usa", "JSON/HTTPS")
+Rel(products, db, "Lê/Escreve")
+Rel(orders, db, "Lê/Escreve")
+Rel(users, db, "Lê/Escreve")
+Rel(orders, payment, "Usa", "API")
