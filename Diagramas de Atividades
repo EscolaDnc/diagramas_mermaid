@@ -1,3 +1,5 @@
+===================================================================================
+Exemplo 01: 
 graph TD
     A((Início)) --> B[Navegar catálogo]
     B --> C{Produto disponível?}
@@ -5,7 +7,8 @@ graph TD
     C -->|Não| E[Notificar indisponibilidade]
     D --> F((Fim))
     E --> F
-
+===================================================================================
+Exemplo 02: 
 graph TD
     A[Iniciar pedido] --> B{{"Processar pedido"}}
     B --> C[Verificar estoque]
@@ -13,7 +16,8 @@ graph TD
     C --> E{{"Juntar resultados"}}
     D --> E
     E --> F[Finalizar pedido]
-
+===================================================================================
+Exemplo 03: 
 graph TD
     A[Receber pedido] --> B{{"Iniciar processamento"}}
     B --> C[Preparar produto]
@@ -21,7 +25,8 @@ graph TD
     C --> E{{"Sincronizar"}}
     D --> E
     E --> F[Enviar pedido]
-
+===================================================================================
+Exemplo 04: 
 graph TD
     subgraph Cliente
     A[Fazer pedido]
@@ -36,7 +41,8 @@ graph TD
     end
     A --> B --> C
     C --> D --> E
-
+===================================================================================
+Exemplo 05: 
 graph TD
     A((Início)) --> B[Cliente navega catálogo]
     B --> C[Cliente seleciona produto]
